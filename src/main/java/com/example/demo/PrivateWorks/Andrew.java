@@ -1,18 +1,33 @@
 package com.example.demo.PrivateWorks;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
+@Entity
+@Table
 public class Andrew {
+    @Id
+    @SequenceGenerator(
+            name = "andrew_sequence",
+            sequenceName = "andrew_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "andrew_sequence"
+    )
     private Long id;
     private String name;
-    private Integer age;
-    private LocalDate dob;
     private String email;
+    private LocalDate dob;
+    @Transient
+    private Integer age;
 
-    public Andrew(Long id, String name, Integer age, LocalDate dob , String email) {
-        this.id = id;
+    public Andrew() {
+    }
+
+    public Andrew(String name, String email , LocalDate dob,int age) {
         this.name = name;
-        this.age = age;
         this.dob = dob;
         this.email = email;
     }
