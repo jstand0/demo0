@@ -1,9 +1,7 @@
 package com.example.demo.PrivateWorks;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,5 +19,13 @@ public class AndrewController {
     @GetMapping
     public List<Andrew> getAndrew() {
         return andrewService.getAndrew();
+    }
+    @PostMapping
+    public void registerNewFriend(@RequestBody Andrew andrew) {
+       andrewService.addNewFriend(andrew);
+    }
+    @DeleteMapping(path = "{andrewId}")
+    public void deleteAndrew(@PathVariable("andrewId") Long andrewId) {
+       andrewService.deleteAndrew(andrewId);
     }
 }
